@@ -47,10 +47,10 @@ jobs:
 
       - name: Update README
         run: |
-          git config --global user.name 'Action'
-          git config --global user.email 'action@github.com'
-          git stage README.md && git commit -m "[skip ci] Update coverage"
           if [ ${git status} ];then
+            git config --global user.name 'Action'
+            git config --global user.email 'action@github.com'
+            git stage README.md && git commit -m "[skip ci] Update coverage"
             git push https://${{secrets.REPO_TOKEN}}@github.com/dooomit/typescript-scrapper.git
           fi  
   build:
@@ -87,10 +87,10 @@ jobs:
 
       - name: Update README
         run: |
-          git config --global user.name 'Action'
-          git config --global user.email 'action@github.com'
-          git stage README.md && git commit -m "[skip ci] Update build status"
           if [ ${git status} ];then
+            git config --global user.name 'Action'
+            git config --global user.email 'action@github.com'
+            git stage README.md && git commit -m "[skip ci] Update build status"
             git push https://${{secrets.REPO_TOKEN}}@github.com/dooomit/typescript-scrapper.git
           fi
 
