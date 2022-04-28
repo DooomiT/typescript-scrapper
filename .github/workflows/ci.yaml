@@ -39,8 +39,7 @@ jobs:
       - name: Run tests
         run: |
           npm run test:coverage > coverage.txt
-          ls -al
-          node scripts/getCoverage.js >> $GITHUB_ENV
+          node scripts/getCoverageResult.js >> $GITHUB_ENV
       
       - name: Create coverage badge
         run: node scripts/setCoverageBadge.js
