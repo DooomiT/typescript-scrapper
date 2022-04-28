@@ -46,7 +46,8 @@ jobs:
         run: |
           git config --global user.name 'Action'
           git config --global user.email 'action@github.com'
-          git stage README.md && git commit -m "Update coverage" && git push
+          git stage README.md && git commit -m "Update coverage"
+          git push https://${{secrets.REPO_TOKEN}}@github.com/dooomit/typescript-scrapper.git
   
   build:
     needs: test
@@ -81,7 +82,8 @@ jobs:
         run: |
           git config --global user.name 'Action'
           git config --global user.email 'action@github.com'
-          git stage README.md && git commit -m "Update build status" && git push
+          git stage README.md && git commit -m "Update build status"
+          git push https://${{secrets.REPO_TOKEN}}@github.com/dooomit/typescript-scrapper.git
 
 
 
