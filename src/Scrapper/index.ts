@@ -19,7 +19,7 @@ export class Scrapper {
       const response = await fetch(this._url);
       return await response.text();
     } catch (e: any) {
-      if (e.message.includes('parse')) throw e;
+      if (e.message.includes('Failed to parse URL')) throw e;
       throw new Error(`Failed to fetch ${this._url}`);
     }
   }
