@@ -43,7 +43,10 @@ jobs:
         run: node scripts/setCoverageBadge.js
 
       - name: Update README
-        run: git stage README.md && git commit -m "Update coverage" && git push
+        run: |
+          git config --global user.name 'Action'
+          git config --global user.email 'action@github.com'
+          git stage README.md && git commit -m "Update coverage" && git push
   
   build:
     needs: test
@@ -75,7 +78,10 @@ jobs:
         run: node scripts/setBuildStatusBadge.js
 
       - name: Update README
-        run: git stage README.md && git commit -m "Update build status" && git push
+        run: |
+          git config --global user.name 'Action'
+          git config --global user.email 'action@github.com'
+          git stage README.md && git commit -m "Update build status" && git push
 
 
 
