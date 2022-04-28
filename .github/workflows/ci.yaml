@@ -38,9 +38,8 @@ jobs:
       
       - name: Run tests
         run: |
-          SUMMARY="$(npm run test:coverage)"
-          echo "NOT IMPLEMENTED"
-          echo "COVERAGE=100" >> $GITHUB_ENV
+          npm run test:coverage > coverage.txt
+          node scripts/getCoverage.js >> $GITHUB_ENV
       
       - name: Create coverage badge
         run: node scripts/setCoverageBadge.js
