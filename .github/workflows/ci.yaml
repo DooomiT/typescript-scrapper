@@ -9,6 +9,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Setup repository
         run: npm install
 
@@ -24,6 +28,10 @@ jobs:
 
       - name: Setup repository
         run: npm install
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       
       - name: Run tests
         run: |
@@ -46,6 +54,10 @@ jobs:
 
       - name: Setup repository
         run: npm install
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       
       - name: Set BuildStatus
         run: echo "BUILD_STATUS=unknown" >> $GITHUB_ENV
