@@ -1,4 +1,12 @@
 import {Scrapper} from './Scrapper/index';
 
-const scrapper = new Scrapper('https://www.google.com');
-scrapper.getData();
+/**
+ * Main function
+ */
+async function main() {
+  const scrapper = new Scrapper('https://www.wikipedia.com');
+  const title = await scrapper.getTitle();
+  console.log(title);
+}
+
+main();

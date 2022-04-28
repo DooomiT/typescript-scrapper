@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsup src/index.ts",
-    "dev": "nodemon --watch \"src\" --exec \"npm start\"",
+    "dev": "nodemon --watch 'src/**/*' -e .ts --exec \"npm start\"",
     "test": "vitest run",
     "start": "npm run build && node dist/index.js",
     "prepare": "husky install"
@@ -28,5 +28,9 @@
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.31",
+    "cheerio": "^1.0.0-rc.10"
   }
 }
