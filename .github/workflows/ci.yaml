@@ -47,7 +47,7 @@ jobs:
 
       - name: Update README
         run: |
-          if [ ${git status} ];then
+          if [ ${git status | grep -q modified} ];then
             git config --global user.name 'Action'
             git config --global user.email 'action@github.com'
             git stage README.md && git commit -m "[skip ci] Update coverage"
@@ -87,7 +87,7 @@ jobs:
 
       - name: Update README
         run: |
-          if [ ${git status} ];then
+          if [ ${git status | grep -q modified} ];then
             git config --global user.name 'Action'
             git config --global user.email 'action@github.com'
             git stage README.md && git commit -m "[skip ci] Update build status"
