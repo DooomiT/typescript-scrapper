@@ -15,8 +15,13 @@ export class Scrapper {
    * @return {Promise<string>}
    */
   async getHtml(): Promise<any> {
-    const response = await fetch(this._url);
-    return await response.text();
+    try {
+      const response = await fetch(this._url);
+      return await response.text();
+    } catch (e: any) {
+      if (e.message.includes('parse')) throw e;
+      throw new Error(`Failed to fetch ${this._url}`);
+    }
   }
 
   /**
