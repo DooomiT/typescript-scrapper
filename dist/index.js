@@ -21,25 +21,32 @@ var Scrapper = class {
     this._url = _url;
   }
   async getHtml() {
-    const response = await fetch(this._url);
-    return await response.text();
+    try {
+      const response = await fetch(this._url);
+      return await response.text();
+    } catch (e) {
+      if (e.message.includes("Failed to parse URL"))
+        throw e;
+      throw new Error(`Failed to fetch ${this._url}`);
+    }
   }
-  async getTitle() {
+  async getElements(selector) {
     const html = await this.getHtml();
     const $ = import_cheerio.default.load(html);
-    return $("title").text();
+    return $(selector).toArray();
   }
-  async getBody() {
+  async getElementsAsText(selector) {
     const html = await this.getHtml();
     const $ = import_cheerio.default.load(html);
-    return $("body").text();
+    const elements = await this.getElements(selector);
+    return elements.map((element) => $(element).text());
   }
 };
 
 // src/index.ts
 async function main() {
-  const scrapper = new Scrapper("https://www.wikipedia.com");
-  const title = await scrapper.getTitle();
-  console.log(title);
+  const scrapper = new Scrapper("https://www.bundesliga.com/de/bundesliga/tabelle");
+  const elements = await scrapper.getElementsAsText("tr td");
+  console.log(elements);
 }
 main();

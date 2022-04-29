@@ -25,24 +25,25 @@ export class Scrapper {
   }
 
   /**
-   * Parses html title
-   * @return {Promise<{title: string, body: string}>}
-   * @throws {Error}
+   * Parse html for a specific selector
+   * @param {string} selector - html selector
+   * @return {Promise<cheerio.Element[]>} - Promise for elements
    */
-  async getTitle(): Promise<string> {
+  async getElements(selector: string): Promise<cheerio.Element[]> {
     const html = await this.getHtml();
     const $ = cheerio.load(html);
-    return $('title').text();
+    return $(selector).toArray();
   }
 
   /**
-   * Parses html body
-   * @return {Promise<{title: string, body: string}>}
-   * @throws {Error}
+   * Parse html for a specific selector and return the text
+   * @param {string} selector - html selector
+   * @return {Promise<string[]>} - Promise for element texts
    */
-  async getBody(): Promise<string> {
+  async getElementsAsText(selector: string): Promise<string[]> {
     const html = await this.getHtml();
     const $ = cheerio.load(html);
-    return $('body').text();
+    const elements = await this.getElements(selector);
+    return elements.map((element: cheerio.Element) => $(element).text());
   }
 }
