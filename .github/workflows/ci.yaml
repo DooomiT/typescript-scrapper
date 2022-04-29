@@ -39,11 +39,11 @@ jobs:
       - name: Run tests
         run: |
           npm run test:coverage > coverage.txt
-          node scripts/getCoverageResult.js >> $GITHUB_ENV
+          coverage=$(node scripts/getCoverageResult.js)
+          echo "COVERAGE=$coverage" >> $GITHUB_ENV
       
       - name: Create coverage badge
         run: |
-          echo $${{ env.COVERAGE }}
           node scripts/setCoverageBadge.js
 
       - name: Update README

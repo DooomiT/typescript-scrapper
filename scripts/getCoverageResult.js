@@ -16,7 +16,7 @@ const getOverallLineCoverage = (coverageReport) => {
 const run = async () => {
   const coverageReport = await fs.readFile('coverage.txt', 'utf8');
   const coverage = getOverallLineCoverage(coverageReport);
-  console.log(`echo "COVERAGE=${coverage}"`);
+  console.log(coverage);
 };
 
 run();
